@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>📦 Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>📦 Quản lý sản phẩm</h1>
+        <div class="nav-buttons">
+            <a href="/" class="btn">🛒 Bán hàng</a>
+            <a href="/stats" class="btn">📊 Thống kê</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-section">
+            <h2>➕ Thêm sản phẩm mới</h2>
+            <form method="POST" action="/add_product">
+                <input name="name" placeholder="Tên sản phẩm" required>
+                <input name="price" type="number" step="1" placeholder="Giá (VNĐ)" required>
+                <input name="stock" type="number" placeholder="Số lượng" required>
+                <select name="category_id" required>
+                    <option value="">-- Chọn danh mục --</option>
+                    {% for c in categories %}
+                    <option value="{{ c.id }}">{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Thêm sản phẩm</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h2>📁 Nhập từ CSV</h2>
+            <form method="POST" action="/upload_csv" enctype="multipart/form-data">
+                <input type="file" name="csvfile" accept=".csv" required>
+                <button type="submit">Tải lên CSV</button>
+            </form>
+            <p><small>File CSV phải có header: <code>name,price,stock,category_id</code> (category_id mặc định = 1)</small></p>
+        </div>
+
+        <div class="products-list">
+            <h2>📋 Danh sách sản phẩm</h2>
+            {% for p in products %}
+            <div class="product-item">
+                <img src="{{ p.image }}" alt="Ảnh">
+                <span>{{ p.name }} | {{ "%.0f"|format(p.price) }}đ | Còn: {{ p.stock }} | Mã: {{ p.barcode }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

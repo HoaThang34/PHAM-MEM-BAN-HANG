@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>🛒 Bán hàng - Tạp hóa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>🛒 Bán hàng</h1>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Tìm sản phẩm hoặc mã vạch..." onkeyup="filterProducts()">
+            <!-- Nút quét mã vạch vẫn giữ, nhưng không bắt buộc -->
+            <button onclick="scanBarcode()" title="Quét mã vạch">🔍</button>
+        </div>
+        <div class="nav-buttons">
+            <a href="/products" class="btn">📦 Quản lý hàng</a>
+            <a href="/orders" class="btn">📊 Lịch sử bán</a>
+            <a href="/stock_report" class="btn">📋 Báo cáo tồn kho</a>
+            <a href="/inventory_check" class="btn">🧪 Kiểm kho</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="products-grid" id="products-grid">
+            {% for p in products %}
+            <div class="product-card" onclick="addToCart({{ p.id }}, '{{ p.name }}', {{ p.price }}, {{ p.stock }})">
+                <h3>{{ p.name }}</h3>
+                <p class="price">{{ "%.0f"|format(p.price) }}đ</p>
+                <p class="stock">Còn: {{ p.stock }}</p>
+                <p class="barcode">{{ p.barcode }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-panel">
+            <h2>🛒 Giỏ hàng</h2>
+            <div id="cart-items"></div>
+            <div style="margin: 10px 0;">
+                <input type="text" id="customer_name" placeholder="Tên khách (tùy chọn)">
+                <input type="text" id="customer_phone" placeholder="SĐT (tùy chọn)">
+            </div>
+            <div class="total">
+                Tổng cộng: <span id="total">0</span>đ
+            </div>
+            <button onclick="checkout()" class="checkout-btn">Thanh toán</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

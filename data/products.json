@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "Gạo",
+    "price": 10000.0,
+    "stock": 0,
+    "image": "https://via.placeholder.com/60?text=SP"
+  },
+  {
+    "id": 2,
+    "name": "Gạo 5kg",
+    "price": 120000.0,
+    "stock": 9,
+    "category_id": 1,
+    "barcode": "000002",
+    "image": "https://via.placeholder.com/60?text=SP"
+  },
+  {
+    "id": 3,
+    "name": "Nước mắm",
+    "price": 25000.0,
+    "stock": 19,
+    "category_id": 1,
+    "barcode": "000003",
+    "image": "https://via.placeholder.com/60?text=SP"
+  },
+  {
+    "id": 4,
+    "name": "Mì tôm",
+    "price": 4000.0,
+    "stock": 99,
+    "category_id": 1,
+    "barcode": "000004",
+    "image": "https://via.placeholder.com/60?text=SP"
+  },
+  {
+    "id": 5,
+    "name": "Sữa tươi",
+    "price": 15000.0,
+    "stock": 14,
+    "category_id": 2,
+    "barcode": "000005",
+    "image": "https://via.placeholder.com/60?text=SP"
+  },
+  {
+    "id": 6,
+    "name": "Bánh kẹo",
+    "price": 8000.0,
+    "stock": 50,
+    "category_id": 1,
+    "barcode": "000006",
+    "image": "https://via.placeholder.com/60?text=SP"
+  }
+]

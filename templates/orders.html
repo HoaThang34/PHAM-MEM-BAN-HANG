@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>📊 Lịch sử bán hàng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Lịch sử bán hàng</h1>
+        <div class="nav-buttons">
+            <a href="/" class="btn">🛒 Bán hàng</a>
+            <a href="/export_sales" class="btn">📤 Xuất Excel</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Thời gian</th>
+                    <th>Khách hàng</th>
+                    <th>SĐT</th>
+                    <th>Tổng tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in orders %}
+                <tr>
+                    <td>{{ o.id }}</td>
+                    <td>{{ o.timestamp }}</td>
+                    <td>{{ o.customer_name or "—" }}</td>
+                    <td>{{ o.customer_phone or "—" }}</td>
+                    <td>{{ "%.0f"|format(o.total) }}đ</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

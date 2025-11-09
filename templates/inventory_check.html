@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>🧪 Kiểm kho</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 Kiểm kho</h1>
+        <div class="nav-buttons">
+            <a href="/" class="btn">🛒 Bán hàng</a>
+            <a href="/stock_report" class="btn">📋 Báo cáo tồn kho</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="inventory-form">
+            <h2>Nhập số lượng thực tế:</h2>
+            <div class="inventory-list">
+                {% for p in products %}
+                <div class="inventory-item">
+                    <span>{{ p.name }} ({{ p.barcode }})</span>
+                    <input type="number" min="0" value="{{ p.stock }}" data-id="{{ p.id }}">
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" onclick="submitInventory()">✅ Lưu kết quả kiểm kho</button>
+        </form>
+    </div>
+
+    <script>
+        function submitInventory() {
+            const form = document.getElementById("inventory-form");
+            const inputs = form.querySelectorAll("input[type=number]");
+            const actual_stock = {};
+            inputs.forEach(input => {
+                actual_stock[input.dataset.id] = input.value;
+            });
+
+            fetch("/submit_inventory", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(actual_stock)
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Kiểm kho thành công!");
+                    window.location.href = "/stock_report";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

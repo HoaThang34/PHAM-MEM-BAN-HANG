@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>📋 Báo cáo tồn kho</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>📋 Báo cáo tồn kho</h1>
+        <div class="nav-buttons">
+            <a href="/" class="btn">🛒 Bán hàng</a>
+            <a href="/inventory_check" class="btn">🧪 Kiểm kho</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <table class="stock-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Mã vạch</th>
+                    <th>Tồn kho</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in products %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.barcode }}</td>
+                    <td>{{ p.stock }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

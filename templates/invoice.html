@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hóa đơn #{{ order.id }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .invoice { width: 300px; border: 1px solid #ccc; padding: 15px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 15px; }
+        .item { display: flex; justify-content: space-between; margin: 5px 0; }
+        .total { font-weight: bold; text-align: right; margin-top: 15px; }
+        .footer { text-align: center; font-size: 12px; margin-top: 20px; }
+        .customer { font-size: 14px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="header">
+            <h2>🧾 HÓA ĐƠN BÁN HÀNG</h2>
+            <p>#{{ order.id }} - {{ order.timestamp }}</p>
+        </div>
+
+        {% if order.customer_name or order.customer_phone %}
+        <div class="customer">
+            Khách hàng: {{ order.customer_name or "—"}}
+            {% if order.customer_phone %}<br>SĐT: {{ order.customer_phone }}{% endif %}
+        </div>
+        {% endif %}
+
+        <div class="items">
+            {% for item in order.items %}
+            <div class="item">
+                <span>{{ item.name }} x{{ item.qty }}</span>
+                <span>{{ "%.0f"|format(item.price * item.qty) }}đ</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="total">
+            Tổng cộng: {{ "%.0f"|format(order.total) }}đ
+        </div>
+
+        <div class="footer">
+            Cảm ơn quý khách đã mua hàng!
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+            setTimeout(() => window.location.href = "/", 1000);
+        };
+    </script>
+</body>
+</html>

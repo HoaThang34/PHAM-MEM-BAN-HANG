@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "timestamp": "2025-11-08 17:49:59",
+    "items": [
+      {
+        "id": 1,
+        "name": "Gạo",
+        "price": 10000,
+        "qty": 1
+      }
+    ],
+    "total": 10000
+  },
+  {
+    "id": 2,
+    "timestamp": "2025-11-08 18:27:42",
+    "items": [
+      {
+        "id": 3,
+        "name": "Nước mắm",
+        "price": 25000,
+        "qty": 1
+      },
+      {
+        "id": 5,
+        "name": "Sữa tươi",
+        "price": 15000,
+        "qty": 1
+      },
+      {
+        "id": 4,
+        "name": "Mì tôm",
+        "price": 4000,
+        "qty": 1
+      }
+    ],
+    "total": 44000,
+    "customer_name": "",
+    "customer_phone": ""
+  },
+  {
+    "id": 3,
+    "timestamp": "2025-11-08 18:27:50",
+    "items": [
+      {
+        "id": 2,
+        "name": "Gạo 5kg",
+        "price": 120000,
+        "qty": 1
+      }
+    ],
+    "total": 120000,
+    "customer_name": "",
+    "customer_phone": ""
+  }
+]
